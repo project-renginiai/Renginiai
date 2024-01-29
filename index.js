@@ -1,1 +1,1 @@
-import login from "./LoginRegister.js";
+import login from "./modules/LoginRegister.js";
