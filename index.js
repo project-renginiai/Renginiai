@@ -1,7 +1,6 @@
-
 import { addLoginPage, removeLoginPage } from "./modules/LoginRegister.js"
-// FB boilerplate
 
+// FB boilerplate
 import { firebaseConfig } from "./firebase.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -22,7 +21,6 @@ import {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 const auth = getAuth(app);
-
 
 addLoginPage()
 // removeLoginPage()
