@@ -1,1 +1,3 @@
-import login from "./modules/LoginRegister.js";
+import { addLoginPage, removeLoginPage } from "./modules/LoginRegister.js"
+
+addLoginPage()
