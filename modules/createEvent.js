@@ -35,7 +35,7 @@ createEventBtn.addEventListener("click", (event) => {
         return;
     }
 
-    set(push(ref(db, "newEvents/")), {
+    set(push(ref(db, "approvedEvents/")), {
         name: eventNameInput,
         location: eventLocationInput,
         date: eventDateInput,
