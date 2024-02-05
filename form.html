@@ -41,36 +41,36 @@
 
         <h1 class="form-title">CREATE YOUR EVENT!</h1>
 
-        <form class="form-box-createYourEvent">
+        <form id="eventCreateForm" class="form-box-createYourEvent">
 
             <div class="input-box-createYourEvent">
                 <label class="eventmakerlabel">EVENT NAME: </label>
-                <input id="eventcreaterinput" type="text" class="input-field" placeholder="Enter name" required />
+                <input id="eventNameInput" type="text" class="input-field" placeholder="Enter name" required />
             </div>
 
             <div class="input-box-createYourEvent">
                 <label class="eventmakerlabel">LOCATION: </label>
-                <input id="eventcreaterinput" type="text" class="input-field" placeholder="Enter location" required />
+                <input id="eventLocationInput" type="text" class="input-field" placeholder="Enter location" required />
             </div>
 
             <div class="input-box-createYourEvent">
                 <label class="eventmakerlabel">DATE: </label>
-                <input id="eventcreaterinput" type="date" class="input-field" placeholder="Enter date" required />
+                <input id="eventDateInput" type="date" class="input-field" placeholder="Enter date" required />
             </div>
             <div class="input-box-createYourEvent">
                 <label class="eventmakerlabel">TIME </label>
-                <input id="eventcreaterinput" type="time" class="input-field" placeholder="Enter time" required />
+                <input id="eventTimeInput" type="time" class="input-field" placeholder="Enter time" required />
             </div>
 
             <div class="input-box-createYourEvent">
                 <label class="eventmakerlabel">DESCRIPTION OF YOUR EVENT: </label>
-                <textarea id="eventdescription" class="input-field" placeholder="Type here..."
+                <textarea id="eventDescriptionInput" class="input-field" placeholder="Type here..."
                     required></textarea>
             </div>
 
             <div class="input-box-createYourEvent">
                 <label class="eventmakerlabel">ADD PICTURE OF YOUR EVENT: </label>
-                <input id="eventcreaterinput" class="input-field" type="url" placeholder="Picture URL"> 
+                <input id="eventImageUrlInput" class="input-field" type="url" placeholder="Picture URL"> 
             </div>
 
             <div class="input-box-createYourEvent">
@@ -83,6 +83,7 @@
     </main>
 
     <script src="./index.js" type="module"></script>
+    <script  src="./modules/createEvent.js" type="module"></script>
 
 </body>
 
