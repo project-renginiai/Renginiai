@@ -516,6 +516,7 @@ footer {
   }
 }
 
+
 /*--------------USER CARDS--------------*/
 .UserCard {
   background-color: rgba(128, 128, 128, 0.75);
@@ -525,3 +526,30 @@ footer {
   padding: 5px;
   width: 70vw;
 }
+
+/* ------------ EVENT CARDS -------------- */
+
+#eventsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  color: white;
+}
+
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  gap: 5px;
+  width: 300px;
+}
+
+.eventImage {
+  object-fit: cover;
+  width: 300px;
+  height: 200px;
+}
+
