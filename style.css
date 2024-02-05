@@ -161,9 +161,7 @@ section#multi {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Center horizontally */
   height: 100svh;
-  /* Adjust the height for full viewport height */
   z-index: 2;
 }
 
@@ -300,6 +298,7 @@ header {
   box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
 
+
 /* ---------FOOTER DESIGN ------------- */
 footer {
   background-color: #1a1a1a;
@@ -389,8 +388,82 @@ footer {
     margin-bottom: 20px;
   }
 }
+/* CREATE YOUR EVENT FORM */
+
+.form-title {
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 100px;
+  font-weight: bold;
+}
+
+.eventmakerlabel {
+  color: white;
+  font-weight: bold;
+}
+
+.form-box-createYourEvent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+}
+
+.input-box-createYourEvent {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+
+.field-createYourEvent {
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+  height: 30px;
+  width: 100%;
+  max-width: 200px;
+  padding: 0 10px 0 45px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.field-createYourEvent:hover,
+.field-createYourEvent:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.submit-create-event {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 30px;
+  width: 100%;
+  max-width: 100px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.submit-create-event:hover {
+  background: rgba(255, 162, 0, 0.99);
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* ----------RESPONSIVE DESIGN-------------- */
 
 @media (max-width: 992px) {
+
   .navbar .links,
   .navbar .action_btn {
     display: none;
@@ -399,9 +472,11 @@ footer {
   .navbar .toggle_btn {
     display: block;
   }
+
   .dropdown_menu {
     display: block;
   }
+
   .login.form {
     display: flex;
     flex-direction: column;
@@ -410,6 +485,7 @@ footer {
     margin-right: auto;
     margin-left: auto;
   }
+
   .login.form input,
   .login.form button {
     width: 100%;
@@ -422,8 +498,18 @@ footer {
     left: 2rem;
     width: unset;
   }
+
   .login.form {
     margin-right: auto;
     margin-left: auto;
+  }
+}
+@media screen and (max-width: 600px) {
+
+  .input-box-createYourEvent,
+  .field-createYourEvent,
+  .submit-create-event {
+    width: 100%;
+    max-width: none;
   }
 }
