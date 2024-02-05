@@ -20,19 +20,25 @@ function displayApprovedEvents() {
           for (let event in allEvents) {
             const eventData = allEvents[event];
             const eventCard = document.createElement("div");
-            eventCard.id = "eventCard";
+            eventCard.className = "eventCard";
             const name = document.createElement("p");
+            name.className = "eventName"
             name.innerText = eventData.name;
             const location = document.createElement("p");
+            location.className = "eventLocation"
             location.innerText = eventData.location;
             const image = document.createElement("img");
+            image.className = "eventImage"
             image.src = eventData.imageUrl;
             image.setAttribute("alt", "event image");
             const description = document.createElement("p");
+            description.className = "eventDescription"
             description.innerText = eventData.description;
             const date = document.createElement("p");
+            date.className = "eventDate"
             date.innerText = eventData.date;
             const time = document.createElement("p");
+            time.className = "eventTime"
             time.innerText = eventData.time;
 
             eventsContainer.append(eventCard);
