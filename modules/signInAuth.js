@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (auth.currentUser) {
       signOut(auth)
         .then(() => {
-          const user = userCredential.user;
           console.log("user signed out");
         })
         .catch((error) => {
