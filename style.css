@@ -90,7 +90,7 @@ header {
   font-weight: bold;
   cursor: pointer;
   transition: scale 0.2 ease;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 .action_btn:hover {
@@ -120,6 +120,10 @@ header {
 
 .dropdown_menu.open {
   height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdown_menu li {
@@ -127,6 +131,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 250px;
 }
 
 .dropdown_menu .action_btn {
@@ -298,7 +303,6 @@ header {
   box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
 
-
 /* ---------FOOTER DESIGN ------------- */
 footer {
   background-color: #1a1a1a;
@@ -463,7 +467,6 @@ footer {
 /* ----------RESPONSIVE DESIGN-------------- */
 
 @media (max-width: 992px) {
-
   .navbar .links,
   .navbar .action_btn {
     display: none;
@@ -505,13 +508,23 @@ footer {
   }
 }
 @media screen and (max-width: 600px) {
-
   .input-box-createYourEvent,
   .field-createYourEvent,
   .submit-create-event {
     width: 100%;
     max-width: none;
   }
+}
+
+
+/*--------------USER CARDS--------------*/
+.UserCard {
+  background-color: rgba(128, 128, 128, 0.75);
+  border: solid black 1px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: 70vw;
 }
 
 /* ------------ EVENT CARDS -------------- */
@@ -539,3 +552,4 @@ footer {
   width: 300px;
   height: 200px;
 }
+
