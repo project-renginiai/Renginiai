@@ -6,10 +6,11 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
 body {
-  height: 100vh;
+  height: 100svh;
   margin: 0;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   background: url(./images/img1.jpg) center/cover;
 }
@@ -20,7 +21,7 @@ body::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 110svh;
   background-color: rgba(80, 80, 80, 0.7);
   z-index: -1;
 }
@@ -28,11 +29,13 @@ body::before {
 li {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: #fff;
   font-size: 1rem;
 }
+
 a:hover {
   color: orange;
   text-decoration: underline;
@@ -42,6 +45,7 @@ a:hover {
 header {
   position: relative;
 }
+
 .navbar {
   top: 0;
   width: 100%;
@@ -58,6 +62,7 @@ header {
   font-weight: bold;
   margin-left: 20px;
 }
+
 .navbar .links {
   display: flex;
   gap: 2rem;
@@ -96,6 +101,7 @@ header {
 .action_btn:active {
   scale: 0.95;
 }
+
 /* --------DROPDOWN MENU-------------- */
 .dropdown_menu {
   display: none;
@@ -111,15 +117,18 @@ header {
   z-index: 3;
   transition: height 0.2 cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .dropdown_menu.open {
   height: 240px;
 }
+
 .dropdown_menu li {
   padding: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .dropdown_menu .action_btn {
   width: 100%;
   display: flex;
@@ -128,7 +137,7 @@ header {
 
 /* ---------MULTI SECTION--------- */
 section#multi {
-  height: calc(100vh - 60px);
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,6 +145,7 @@ section#multi {
   text-align: center;
   color: #fff;
 }
+
 #multi h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -145,38 +155,47 @@ section#multi {
 .signUp-header {
   margin-bottom: 10px;
 }
+
 .form-box {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center horizontally */
-  height: 100vh; /* Adjust the height for full viewport height */
+  justify-content: center;
+  /* Center horizontally */
+  height: 100svh;
+  /* Adjust the height for full viewport height */
   z-index: 2;
 }
+
 .register-container {
   width: 500px;
   display: flex;
   flex-direction: column;
   transition: 0.5 ease-in-out;
 }
+
 .top span {
   color: #fff;
   font-size: small;
   padding: 10px 0;
 }
+
 .top span a {
   font-weight: 500;
   margin-left: 5px;
 }
+
 header {
   color: #fff;
   font-size: 30px;
   text-align: center;
 }
+
 .two-forms {
   display: flex;
   gap: 10px;
 }
+
 .input-field {
   font-size: 15px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -189,19 +208,23 @@ header {
   outline: none;
   transition: 0.2s ease;
 }
+
 .input-field:hover,
 .input-field:focus {
   background: rgba(255, 255, 255, 0.7);
 }
+
 ::-webkit-input-placeholder {
   color: #fff;
 }
+
 .input-box i {
   position: relative;
   top: -35px;
   left: 17px;
   color: #fff;
 }
+
 .submit {
   font-size: 15px;
   font-weight: 500;
@@ -215,10 +238,12 @@ header {
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
+
 .submit:hover {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
+
 .two-col {
   display: flex;
   justify-content: space-between;
@@ -226,14 +251,18 @@ header {
   font-size: small;
   margin-top: 10px;
 }
+
 .two-col .one {
   display: flex;
   gap: 5px;
 }
+
 /* ---------LOGIN FORM------------ */
-.login-form {
+.signIn-form {
   margin-left: 4rem;
+  margin-right: 4rem;
 }
+
 .inputField {
   font-size: 15px;
   background-color: rgba(255, 255, 255, 0.6);
@@ -246,10 +275,12 @@ header {
   outline: none;
   transition: 0.2s ease;
 }
+
 .inputField:hover,
 .inputField:focus {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .signin-btn {
   font-size: 15px;
   font-weight: 500;
@@ -263,11 +294,101 @@ header {
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
+
 .signin-btn:hover {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
-/* ----------RESPONSIVE DESIGN-------------- */
+
+/* ---------FOOTER DESIGN ------------- */
+footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 40px 0;
+  border-top: 2px solid #444;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+  box-shadow: 0px 0px 20px rgba(255, 136, 0, 0.2);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  margin-right: 20px;
+  padding: 0 20px;
+  border-right: 2px solid #444;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+h3 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  color: #ffa700;
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.social-icons li {
+  margin-right: 15px;
+}
+
+.social-icons a {
+  text-decoration: none;
+  color: #ffa700;
+  font-size: 1.5em;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+.contact-info {
+  font-size: 1.2em;
+  color: #aaa;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+  color: #aaa;
+}
+
+footer {
+  box-shadow: 0px 0px 20px rgba(255, 136, 0, 0.5);
+}
+/*---------------Responsive Styling----------------- */
+@media screen and (max-width: 768px) {
+  .footer-section {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
 
 @media (max-width: 992px) {
   .navbar .links,
