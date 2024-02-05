@@ -11,3 +11,6 @@ toggleBtn.onclick = function (params) {
 
   toggleBtnIcon.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
 };
+
+import { displayEvents } from "./modules/displayEvents.js";
+displayEvents("approvedEvents")

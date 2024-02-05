@@ -10,6 +10,7 @@ import {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 
+
 const createEventBtn = document.getElementById("createEventButton");
 
 createEventBtn.addEventListener("click", (event) => {
