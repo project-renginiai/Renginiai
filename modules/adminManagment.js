@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const userManagment = document.querySelectorAll(".ManageUsersBtn")
   const eventManagment = document.querySelectorAll(".ManageEventsBtn")
+  const categoriesManagement = document.querySelectorAll(".ManageCategoriesBtn")
 
   userManagment.forEach((el) => {
     el.addEventListener("click", (event) => {
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             removeCards.forEach((el) => el.remove())
             const removeEvents = document.querySelectorAll(".eventCard")
             removeEvents.forEach((el) => el.remove())
-            const cardContainer = document.querySelector("#adminMulti")
+            const cardContainer = document.querySelector("#eventsContainer")
             for (let user in data) {
               const users = data[user]
               if (users.role == "simple") {
@@ -78,11 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
             removeCards.forEach((el) => el.remove())
             const removeEvents = document.querySelectorAll(".eventCard")
             removeEvents.forEach((el) => el.remove())
-            const cardContainer = document.querySelector("#adminMulti")
+            const cardContainer = document.querySelector("#eventsContainer")
             for (let event in data) {
-              console.log(data, event)
               const events = data[event]
-              console.log(events)
 
               const card = document.createElement("div")
               card.className = "eventCard"
@@ -90,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               const eventName = document.createElement("div")
               eventName.innerText = `Name: ${events.name}`
+              eventName.className = "eventName"
 
               const eventImage = document.createElement("img")
               eventImage.setAttribute("src", events.imageUrl)
@@ -98,12 +98,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
               const eventDescription = document.createElement("div")
               eventDescription.innerText = `Description: ${events.description}`
+              eventDescription.className = "eventDescription"
 
               const eventLocation = document.createElement("div")
               eventLocation.innerText = `Location: ${events.location}`
+              eventLocation.className = "eventLocation"
 
               const eventDate = document.createElement("div")
               eventDate.innerText = `Date: ${events.time} ${events.date}`
+              eventDate.className = "eventDate"
 
               const buttonBox = document.createElement("div")
               buttonBox.className = "adminButtonBox"

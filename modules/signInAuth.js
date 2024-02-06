@@ -67,6 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const userHeaderLinks = document.getElementById("userHeaderLinks")
       userHeaderLinks.innerHTML = `<li id="createEventLink"><a href="./form.html">Create Event</a></li>
       <li id="adminDashboard"><a href="./adminDashboard.html">Admin Dashboard</a></li>`
+      const registerBtn = document.getElementById("registerBtn")
+      if (registerBtn) {
+        registerBtn.remove()
+      }
     } else {
       signInBtn.textContent = "Sign In";
       const createEventLink = document.getElementById("createEventLink")
@@ -77,6 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (adminDashboard) {
         adminDashboard.remove()
       }
+      const logInForm = document.querySelector(".signIn-form")
+      const registerBtn = document.createElement("a")
+      registerBtn.className = "action_btn"
+      registerBtn.id = "registerBtn"
+      registerBtn.href = "./register.html"
+      registerBtn.innerText = "Register"
+      logInForm.appendChild(registerBtn)
       const dropDownMenu = document.getElementById("dropDownMenu")
       dropDownMenu.innerHTML = `<li><a href="./register.html" class="action_btn">Register</a></li>`
     }

@@ -20,8 +20,16 @@
     <header id="header">
       <nav class="navbar">
         <div class="logo"><a href="./index.html">LOGO .</a></div>
-        <ul class="links">
-        </ul>
+        <ul class="links"></ul>
+        <form class="search-form" action="search.html" method="GET">
+          <input
+            id="searchInput"
+            placeholder="Search for event..."
+            class="searchField"
+            type="text"
+            name="q"
+          />
+        </form>
         <form class="signIn-form">
           <input
             id="signInEmailInput"
@@ -40,20 +48,13 @@
           </button>
         </form>
         <ul class="links" id="userHeaderLinks"></ul>
-        <a href="./register.html" class="action_btn">Register</a>
         <div class="toggle_btn">
           <i class="fa-solid fa-bars"></i>
         </div>
       </nav>
-      <div id= "dropDownMenu" class="dropdown_menu"></div>
+      <div id="dropDownMenu" class="dropdown_menu"></div>
     </header>
     <main id="main">
-      <!-- <section id="multi">
-        <h1>
-          VISKA KELEME I MAIN SECTION PER DOM! REIKS NEREIKS KITU LINK PRIDESIM
-          PASALINSIM NEBEDA!...
-        </h1>
-      </section> -->
     </main>
     <footer>
       <div class="footer-container">
@@ -98,5 +99,6 @@
     </footer>
     <script src="./index.js" type="module"></script>
     <script src="./modules/signInAuth.js" type="module"></script>
+    <script src="./modules/searchBar.js" type="module"></script>
   </body>
 </html>
