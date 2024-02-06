@@ -552,6 +552,29 @@ footer {
   min-height: 106px;
 }
 
+.liked {
+  color: yellow;
+}
+
+
+.likeButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.likeButton .heartIcon {
+  color: #333;
+  height: 60px;
+  transition: color 0.3s ease; 
+}
+
+.likeButton .heartIcon.liked {
+  color: red; 
+  
+}
+
+
 /* ------------ EVENT CARDS -------------- */
 
 #eventsContainer {
@@ -742,3 +765,5 @@ footer {
 .searchField::placeholder {
   color: black;
 }
+
+

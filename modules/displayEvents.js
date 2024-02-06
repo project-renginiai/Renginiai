@@ -5,6 +5,7 @@ import {
   ref,
   get,
   child,
+  update
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const app = initializeApp(firebaseConfig);
@@ -46,8 +47,29 @@ export function displayEvents(collectionName, filterByName = "") {
             time.className = "eventTime";
             time.innerText = eventData.time;
 
+            // pridejau heart icona ir jos funkcionaluma
+
+            const likeButton = document.createElement("button");
+            likeButton.className = "likeButton";
+            const heartIcon = document.createElement("i");
+            heartIcon.className = "fa-solid fa-heart fa-2x";
+            likeButton.appendChild(heartIcon);
+            const likeCount = document.createElement("p");
+            likeCount.className = "likeCount";
+            likeCount.innerText = `Likes: ${eventData.likes || 0}`;
+
+            likeButton.addEventListener("click", () => {
+
+              const eventRef = ref(db, `${collectionName}/${event}`);
+              update(eventRef, {
+                likes: eventData.likes ? eventData.likes + 1 : 1
+              });
+
+              heartIcon.classList.toggle("liked");
+            });
+
             eventsContainer.append(eventCard);
-            eventCard.append(name, location, image, description, date, time);
+            eventCard.append(name, location, image, description, date, time, likeButton, likeCount);
           }
         }
         const main = document.getElementById("main");
