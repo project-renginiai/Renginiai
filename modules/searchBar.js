@@ -17,22 +17,23 @@ document
     event.preventDefault();
     const queryText = document.getElementById("searchInput").value.trim();
     if (queryText !== "") {
-      const searchResults = [];
-      const eventsRef = ref(db, "events");
+      displayEvents("approvedEvents", queryText);
+      //   const searchResults = [];
+      //   const eventsRef = ref(db, "events");
 
-      const eventsSnapshot = await get(eventsRef);
+      //   const eventsSnapshot = await get(eventsRef);
 
-      eventsSnapshot.forEach((childSnapshot) => {
-        const eventData = childSnapshot.val();
+      //   eventsSnapshot.forEach((childSnapshot) => {
+      //     const eventData = childSnapshot.val();
 
-        for (const key in eventData) {
-          if (eventData[key].toLowerCase().includes(queryText.toLowerCase())) {
-            searchResults.push(eventData);
-            break;
-          }
-        }
-      });
+      //     for (const key in eventData) {
+      //       if (eventData[key].toLowerCase().includes(queryText.toLowerCase())) {
+      //         searchResults.push(eventData);
+      //         break;
+      //       }
+      //     }
+      //   });
 
-      console.log("Search Results:", searchResults);
+      //   console.log("Search Results:", searchResults);
     }
   });
