@@ -5,8 +5,10 @@ import {
   ref,
   update,
   set,
+  push,
   onValue,
   child,
+  remove,
   get,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
 
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dbRef = ref(getDatabase())
 
   const userManagment = document.querySelectorAll(".ManageUsersBtn")
-  const eventManagment = document.querySelector(".ManageEventsBtn")
+  const eventManagment = document.querySelectorAll(".ManageEventsBtn")
 
   userManagment.forEach((el) => {
     el.addEventListener("click", (event) => {
@@ -26,24 +28,123 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = snapshot.val()
             const removeCards = document.querySelectorAll(".UserCard")
             removeCards.forEach((el) => el.remove())
-            const cardContainer = document.querySelector("#multi")
+            const removeEvents = document.querySelectorAll(".eventCard")
+            removeEvents.forEach((el) => el.remove())
+            const cardContainer = document.querySelector("#adminMulti")
             for (let user in data) {
               const users = data[user]
+              if (users.role == "simple") {
+                const card = document.createElement("div")
+                card.className = "UserCard"
 
-              const card = document.createElement("div")
-              card.className = "UserCard"
+                const emailInfo = document.createElement("div")
+                emailInfo.innerText = `Email: ${users.email}`
 
-              const emailInfo = document.createElement("div")
-              emailInfo.innerText = `Email: ${users.email}`
+                const roleInfo = document.createElement("div")
+                roleInfo.innerText = `Role: ${users.role}`
 
-              const roleInfo = document.createElement("div")
-              roleInfo.innerText = `Role: ${users.role}`
-
-              card.append(emailInfo, roleInfo)
-              cardContainer.appendChild(card)
+                const buttonBox = document.createElement("div")
+                buttonBox.className = "adminButtonBox"
+                const removeButton = document.createElement("button")
+                removeButton.className = "removeButton"
+                removeButton.innerText = "Remove User"
+                removeButton.addEventListener("click", (event) => {
+                  const userFromDB = ref(db, `/users/${user}`)
+                  remove(userFromDB)
+                  card.remove()
+                })
+                buttonBox.append(removeButton)
+                card.append(emailInfo, roleInfo, buttonBox)
+                cardContainer.appendChild(card)
+              }
             }
           } else {
-            console.log("no data availabele")
+            alert("no data availabele")
+          }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    })
+  })
+
+  eventManagment.forEach((el) => {
+    el.addEventListener("click", (event) => {
+      get(child(dbRef, "/newEvents/"))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val()
+            const removeCards = document.querySelectorAll(".UserCard")
+            removeCards.forEach((el) => el.remove())
+            const removeEvents = document.querySelectorAll(".eventCard")
+            removeEvents.forEach((el) => el.remove())
+            const cardContainer = document.querySelector("#adminMulti")
+            for (let event in data) {
+              console.log(data, event)
+              const events = data[event]
+              console.log(events)
+
+              const card = document.createElement("div")
+              card.className = "eventCard"
+              card.style.margin = "5px"
+
+              const eventName = document.createElement("div")
+              eventName.innerText = `Name: ${events.name}`
+
+              const eventImage = document.createElement("img")
+              eventImage.setAttribute("src", events.imageUrl)
+              eventImage.setAttribute("alt", "image")
+              eventImage.className = "eventImage"
+
+              const eventDescription = document.createElement("div")
+              eventDescription.innerText = `Description: ${events.description}`
+
+              const eventLocation = document.createElement("div")
+              eventLocation.innerText = `Location: ${events.location}`
+
+              const eventDate = document.createElement("div")
+              eventDate.innerText = `Date: ${events.time} ${events.date}`
+
+              const buttonBox = document.createElement("div")
+              buttonBox.className = "adminButtonBox"
+              const approveButton = document.createElement("button")
+              approveButton.className = "approveButton"
+              approveButton.innerText = "Approve"
+              approveButton.addEventListener("click", (ev) => {
+                set(push(ref(db, "approvedEvents/")), {
+                  name: events.name,
+                  location: events.location,
+                  date: events.date,
+                  time: events.time,
+                  description: events.description,
+                  imageUrl: events.imageUrl,
+                })
+                const eventFromDB = ref(db, `/newEvents/${event}`)
+                remove(eventFromDB)
+                card.remove()
+              })
+              const rejectButton = document.createElement("button")
+              rejectButton.className = "rejectButton"
+              rejectButton.innerText = "Reject"
+              rejectButton.addEventListener("click", (ev) => {
+                const eventFromDB = ref(db, `/newEvents/${event}`)
+                remove(eventFromDB)
+                card.remove()
+              })
+
+              buttonBox.append(approveButton, rejectButton)
+              card.append(
+                eventName,
+                eventImage,
+                eventDescription,
+                eventLocation,
+                eventDate,
+                buttonBox
+              )
+              cardContainer.append(card)
+            }
+          } else {
+            alert("no data available")
           }
         })
         .catch((error) => {
