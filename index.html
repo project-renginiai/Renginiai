@@ -17,13 +17,10 @@
     <title>Eventeristas</title>
   </head>
   <body>
-    <header>
+    <header id="header">
       <nav class="navbar">
         <div class="logo"><a href="./index.html">LOGO .</a></div>
         <ul class="links">
-          <li><a href="about">About</a></li>
-          <li><a href="upcomingevents">Upcoming Events</a></li>
-          <li><a href="contact">Contact</a></li>
         </ul>
         <form class="signIn-form">
           <input
@@ -42,23 +39,13 @@
             Sign In
           </button>
         </form>
-        <ul class="links">
-          <li><a href="./form.html">Create Event</a></li>
-          <li><a href="contact">Contact</a></li>
-        </ul>
-
+        <ul class="links" id="userHeaderLinks"></ul>
         <a href="./register.html" class="action_btn">Register</a>
         <div class="toggle_btn">
           <i class="fa-solid fa-bars"></i>
         </div>
       </nav>
-
-      <div class="dropdown_menu">
-        <li><a href="./form.html">Create Event</a></li>
-        <li><a href="upcomingevents">Upcoming Events</a></li>
-        <li><a href="contact">Contact</a></li>
-        <li><a href="./register.html" class="action_btn">Register</a></li>
-      </div>
+      <div id= "dropDownMenu" class="dropdown_menu"></div>
     </header>
     <main id="main">
       <!-- <section id="multi">

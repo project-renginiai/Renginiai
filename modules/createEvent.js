@@ -20,7 +20,8 @@ onAuthStateChanged(auth, (user) => {
     const createEventBtn = document.getElementById("createEventButton");
     createEventBtn.addEventListener("click", (event) => {
         event.preventDefault();
-    
+
+        const userID = user.uid
         const eventCreateForm = document.getElementById("eventCreateForm")
         const eventNameInput = document.getElementById("eventNameInput").value
         const eventLocationInput = document.getElementById("eventLocationInput").value
@@ -28,7 +29,6 @@ onAuthStateChanged(auth, (user) => {
         const eventTimeInput = document.getElementById("eventTimeInput").value
         const eventDescriptionInput = document.getElementById("eventDescriptionInput").value
         const eventImageUrlInput = document.getElementById("eventImageUrlInput").value
-        const userID = user.uid;
     
         if (
             !eventNameInput ||
