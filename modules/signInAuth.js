@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (auth.currentUser) {
       signOut(auth)
         .then(() => {
-          const user = userCredential.user;
           console.log("user signed out");
         })
         .catch((error) => {
@@ -62,8 +61,25 @@ document.addEventListener("DOMContentLoaded", function () {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       signInBtn.textContent = "Sign Out";
+      const dropDownMenu = document.getElementById("dropDownMenu")
+      dropDownMenu.innerHTML = `<li><a href="./form.html">Create Event</a></li>
+      <li><a href="./adminDashboard.html">Admin Dashboard</a></li>`
+      const userHeaderLinks = document.getElementById("userHeaderLinks")
+      userHeaderLinks.innerHTML = `<li id="createEventLink"><a href="./form.html">Create Event</a></li>
+      <li id="adminDashboard"><a href="./adminDashboard.html">Admin Dashboard</a></li>`
     } else {
       signInBtn.textContent = "Sign In";
+      const createEventLink = document.getElementById("createEventLink")
+      if (createEventLink) {
+        createEventLink.remove()
+      }
+      const adminDashboard = document.getElementById("adminDashboard")
+      if (adminDashboard) {
+        adminDashboard.remove()
+      }
+      const dropDownMenu = document.getElementById("dropDownMenu")
+      dropDownMenu.innerHTML = `<li><a href="./register.html" class="action_btn">Register</a></li>`
     }
   });
 });
+
