@@ -742,3 +742,10 @@ footer {
 .searchField::placeholder {
   color: black;
 }
+
+/* main page filter */
+
+#filterOption {
+  font-size: 18px;
+  margin-top: 3vh;
+}

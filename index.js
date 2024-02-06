@@ -13,5 +13,4 @@ toggleBtn.onclick = function (params) {
 };
 
 import { displayEvents } from "./modules/displayEvents.js";
-displayEvents("approvedEvents")
-
+displayEvents("approvedEvents");

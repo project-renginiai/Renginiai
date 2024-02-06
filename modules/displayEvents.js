@@ -51,7 +51,6 @@ export function displayEvents(collectionName, filterByName = "") {
           }
         }
         const main = document.getElementById("main");
-        // Clear existing content before appending new events
         main.innerHTML = "";
         main.append(eventsContainer);
       } else {
