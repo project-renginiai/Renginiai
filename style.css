@@ -633,6 +633,98 @@ footer {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75);
 }
 
+.eventCard {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eventCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.eventImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.eventDetails {
+  padding: 20px;
+}
+
+.eventName {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #bda104;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.eventLocation {
+  color: fff;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.eventDescription {
+  color: fff;
+  line-height: 1.6;
+}
+
+.eventDate,
+.eventTime {
+  margin-top: 10px;
+  color: fff;
+}
+
+.eventCard:hover .eventName,
+.eventCard:hover .eventLocation,
+.eventCard:hover .eventDescription,
+.eventCard:hover .eventDate,
+.eventCard:hover .eventTime {
+  color: red;
+}
+
+.eventCard:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.eventCard:hover .eventDescription {
+  font-style: italic;
+}
+
+.eventCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.5), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.eventCard::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 2;
+}
+
 /* search bar */
 
 .search-form {
