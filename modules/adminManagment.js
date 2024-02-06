@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const userManagment = document.querySelectorAll(".ManageUsersBtn")
   const eventManagment = document.querySelectorAll(".ManageEventsBtn")
+  const categoriesManagement = document.querySelectorAll(".ManageCategoriesBtn")
 
   userManagment.forEach((el) => {
     el.addEventListener("click", (event) => {
