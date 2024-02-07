@@ -5,10 +5,16 @@ import {
   ref,
   get,
   child,
+  update
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
+const auth = getAuth();
 
 export function displayEvents(collectionName, filterByName = "") {
   get(child(ref(db), `${collectionName}/`))
@@ -45,9 +51,52 @@ export function displayEvents(collectionName, filterByName = "") {
             const time = document.createElement("p");
             time.className = "eventTime";
             time.innerText = eventData.time;
+            const likeButton = document.createElement("button");
+            likeButton.className = "likeButton";
+            const heartIcon = document.createElement("i");
+            heartIcon.className = "fa-solid fa-heart fa-2x";
+            likeButton.appendChild(heartIcon);
+            const likeCount = document.createElement("p");
+            likeCount.className = "likeCount";
+            likeCount.innerText = `Likes: ${eventData.likes || 0}`;
 
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    likeButton.addEventListener("click", async (e) => {
+                        e.preventDefault();          
+                        const eventRef = ref(db, `${collectionName}/${event}`);
+                        const eventDataSnapshot = await get(eventRef);
+                        if (eventDataSnapshot.exists()) {
+                            const eventData = eventDataSnapshot.val();
+                            const currentLikes = eventData.likes || 0;
+            
+                            if (heartIcon.classList.contains("liked")) {
+                                update(eventRef, {
+                                    likes: currentLikes - 1
+                                });
+                                const userLikesRef = ref(db, `users/${user.uid}/likedEvents`);
+                                update(userLikesRef, {
+                                    [event]: null
+                                });
+                            } else {
+                                update(eventRef, {
+                                    likes: currentLikes + 1
+                                });
+                                const userLikesRef = ref(db, `users/${user.uid}/likedEvents`);
+                                update(userLikesRef, {
+                                    [event]: true
+                                });
+                            }
+                            heartIcon.classList.toggle("liked");
+                            likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes -1 }`;
+                        }
+                    });
+                } else { 
+                    console.log("User not signed in");
+                }
+            });
             eventsContainer.append(eventCard);
-            eventCard.append(name, location, image, description, date, time);
+            eventCard.append(name, location, image, description, date, time, likeButton, likeCount);
           }
         }
         const main = document.getElementById("main");
