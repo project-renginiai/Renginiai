@@ -51,13 +51,6 @@ export function displayEvents(collectionName, filterByName = "") {
             const time = document.createElement("p");
             time.className = "eventTime";
             time.innerText = eventData.time;
-
-            // pridejau heart icona ir jos funkcionaluma
-            // onAuthStateChanged(auth, (user) => {
-            //     if (user) {
-            //         console.log(user)
-            //     }
-            // })
             const likeButton = document.createElement("button");
             likeButton.className = "likeButton";
             const heartIcon = document.createElement("i");
@@ -70,8 +63,7 @@ export function displayEvents(collectionName, filterByName = "") {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     likeButton.addEventListener("click", async (e) => {
-                        e.preventDefault();
-            
+                        e.preventDefault();          
                         const eventRef = ref(db, `${collectionName}/${event}`);
                         const eventDataSnapshot = await get(eventRef);
                         if (eventDataSnapshot.exists()) {
@@ -96,15 +88,13 @@ export function displayEvents(collectionName, filterByName = "") {
                                 });
                             }
                             heartIcon.classList.toggle("liked");
-                            likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes}`;
+                            likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes -1 }`;
                         }
                     });
-                } else {
-                    
+                } else { 
                     console.log("User not signed in");
                 }
             });
-
             eventsContainer.append(eventCard);
             eventCard.append(name, location, image, description, date, time, likeButton, likeCount);
           }
