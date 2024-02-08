@@ -21,7 +21,7 @@ onAuthStateChanged(auth, (user) => {
     createEventBtn.addEventListener("click", (event) => {
         event.preventDefault();
 
-        const userID = user.uid
+        const userEmail = user.email
         const eventCreateForm = document.getElementById("eventCreateForm")
         const eventNameInput = document.getElementById("eventNameInput").value
         const eventLocationInput = document.getElementById("eventLocationInput").value
@@ -49,7 +49,7 @@ onAuthStateChanged(auth, (user) => {
             time: eventTimeInput,
             description: eventDescriptionInput,
             imageUrl: eventImageUrlInput,
-            creator: userID
+            creator: userEmail
         })
             .then(() => {
                 alert("Event added succesfully");
