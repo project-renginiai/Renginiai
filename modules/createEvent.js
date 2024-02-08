@@ -29,7 +29,6 @@ onAuthStateChanged(auth, (user) => {
         const eventTimeInput = document.getElementById("eventTimeInput").value
         const eventDescriptionInput = document.getElementById("eventDescriptionInput").value
         const eventImageUrlInput = document.getElementById("eventImageUrlInput").value
-    
         if (
             !eventNameInput ||
             !eventLocationInput ||
@@ -41,7 +40,6 @@ onAuthStateChanged(auth, (user) => {
             alert("Please fill in all the fields.");
             return;
         }
-    
         set(push(ref(db, "newEvents/")), {
             name: eventNameInput,
             location: eventLocationInput,
@@ -59,6 +57,9 @@ onAuthStateChanged(auth, (user) => {
                 console.log(err);
             });
     });
+  } else {
+    alert('log in to create events')
+    window.location.href = "index.html"
   }
 });
 
