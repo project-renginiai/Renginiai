@@ -74,17 +74,9 @@ export function displayEvents(collectionName, filterByName = "") {
                                 update(eventRef, {
                                     likes: currentLikes - 1
                                 });
-                                const userLikesRef = ref(db, `users/${user.uid}/likedEvents`);
-                                update(userLikesRef, {
-                                    [event]: null
-                                });
                             } else {
                                 update(eventRef, {
                                     likes: currentLikes + 1
-                                });
-                                const userLikesRef = ref(db, `users/${user.uid}/likedEvents`);
-                                update(userLikesRef, {
-                                    [event]: true
                                 });
                             }
                             heartIcon.classList.toggle("liked");
