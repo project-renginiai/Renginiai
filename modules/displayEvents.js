@@ -61,31 +61,39 @@ export function displayEvents(collectionName, filterByName = "") {
             likeCount.innerText = `Likes: ${eventData.likes || 0}`;
 
             onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    likeButton.addEventListener("click", async (e) => {
-                        e.preventDefault();          
-                        const eventRef = ref(db, `${collectionName}/${event}`);
-                        const eventDataSnapshot = await get(eventRef);
-                        if (eventDataSnapshot.exists()) {
-                            const eventData = eventDataSnapshot.val();
-                            const currentLikes = eventData.likes || 0;
+              if (user) {
+                  likeButton.addEventListener("click", async (e) => {
+                      e.preventDefault();    
+                      const eventRef = ref(db, `${collectionName}/${event}`);
+                      const eventLikedByRef = ref(db, `${collectionName}/${event}/likedBy`);
+                      const eventDataSnapshot = await get(eventRef);
+                      if (eventDataSnapshot.exists()) {
+                          const eventData = eventDataSnapshot.val();
+                          const currentLikes = eventData.likes || 0;
             
-                            if (heartIcon.classList.contains("liked")) {
-                                update(eventRef, {
-                                    likes: currentLikes - 1
-                                });
-                            } else {
-                                update(eventRef, {
-                                    likes: currentLikes + 1
-                                });
-                            }
-                            heartIcon.classList.toggle("liked");
-                            likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes -1 }`;
-                        }
-                    });
-                } else { 
-                    console.log("User not signed in");
-                }
+                          if (heartIcon.classList.contains("liked")) {
+                              update(eventRef, {
+                                  likes: currentLikes - 1
+                              });
+                              update(eventLikedByRef, {
+                                  [user.uid]: null
+                              })
+                              
+                          } else {
+                              update(eventRef, {
+                                  likes: currentLikes + 1
+                              });
+                              update(eventLikedByRef, {
+                                [user.uid]: true
+                            })
+                          }
+                          heartIcon.classList.toggle("liked");
+                          likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes -1 }`;
+                      }
+                  });
+              } else { 
+                  console.log("User not signed in");
+              }
             });
             eventsContainer.append(eventCard);
             eventCard.append(name, location, image, description, date, time, likeButton, likeCount);
@@ -103,3 +111,6 @@ export function displayEvents(collectionName, filterByName = "") {
       console.log(err);
     });
 }
+
+
+
