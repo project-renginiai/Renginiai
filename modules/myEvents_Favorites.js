@@ -16,9 +16,13 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     const linksDiv = document.createElement("div");
     linksDiv.classList.add("eventsFavoritesLinks");
+    linksDiv.style.display = "flex";
+    linksDiv.style.listStyleType = "none";
+    linksDiv.style.padding = "0";
+    linksDiv.style.margin = "0";
     linksDiv.innerHTML = `
     <li><a href="#">My Events</a></li>
-    <li><a href="#">My Favorites</a></li>
+    <li style="margin-left: 15px; margin-right: 15px" ><a href="#">My Favorites</a></li>
   `;
     navbar.appendChild(linksDiv);
   } else {

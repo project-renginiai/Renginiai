@@ -556,7 +556,6 @@ footer {
   color: yellow;
 }
 
-
 .likeButton {
   background-color: transparent;
   border: none;
@@ -566,14 +565,12 @@ footer {
 .likeButton .heartIcon {
   color: #333;
   height: 60px;
-  transition: color 0.3s ease; 
+  transition: color 0.3s ease;
 }
 
 .likeButton .heartIcon.liked {
-  color: red; 
-  
+  color: red;
 }
-
 
 /* ------------ EVENT CARDS -------------- */
 
@@ -765,5 +762,3 @@ footer {
 .searchField::placeholder {
   color: black;
 }
-
-
