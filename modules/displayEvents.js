@@ -51,17 +51,18 @@ export function displayEvents(collectionName, filterByName = "") {
             const time = document.createElement("p");
             time.className = "eventTime";
             time.innerText = eventData.time;
-            const likeButton = document.createElement("button");
-            likeButton.className = "likeButton";
-            const heartIcon = document.createElement("i");
-            heartIcon.className = "fa-solid fa-heart fa-2x";
-            likeButton.appendChild(heartIcon);
-            const likeCount = document.createElement("p");
-            likeCount.className = "likeCount";
-            likeCount.innerText = `Likes: ${eventData.likes || 0}`;
+
 
             onAuthStateChanged(auth, (user) => {
               if (user) {
+                  const likeButton = document.createElement("button");
+                  likeButton.className = "likeButton";
+                  const heartIcon = document.createElement("i");
+                  heartIcon.className = "fa-solid fa-heart fa-2x";
+                  likeButton.appendChild(heartIcon);
+                  const likeCount = document.createElement("p");
+                  likeCount.className = "likeCount";
+                  likeCount.innerText = `Likes: ${eventData.likes || 0}`;
                   likeButton.addEventListener("click", async (e) => {
                       e.preventDefault();    
                       const eventRef = ref(db, `${collectionName}/${event}`);
@@ -91,12 +92,16 @@ export function displayEvents(collectionName, filterByName = "") {
                           likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes -1 }`;
                       }
                   });
-              } else { 
-                  console.log("User not signed in");
+                  eventCard.append(likeButton, likeCount)
+              } else {
+                const likeButtons = document.querySelectorAll(".likeButton")
+                likeButtons.forEach((el) => el.remove())
+                const likeCounters = document.querySelectorAll(".likeCount")
+                likeCounters.forEach((el) => el.remove())
               }
             });
             eventsContainer.append(eventCard);
-            eventCard.append(name, location, image, description, date, time, likeButton, likeCount);
+            eventCard.append(name, location, image, description, date, time);
           }
         }
         const main = document.getElementById("main");
