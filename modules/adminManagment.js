@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             }
           } else {
-            alert("no data availabele")
+            alert("no data available")
           }
         })
         .catch((error) => {
@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   time: events.time,
                   description: events.description,
                   imageUrl: events.imageUrl,
+                  creator: events.creator
                 })
                 const eventFromDB = ref(db, `/newEvents/${event}`)
                 remove(eventFromDB)

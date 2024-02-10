@@ -21,7 +21,7 @@ onAuthStateChanged(auth, (user) => {
     createEventBtn.addEventListener("click", (event) => {
         event.preventDefault();
 
-        const userID = user.uid
+        const userEmail = user.email
         const eventCreateForm = document.getElementById("eventCreateForm")
         const eventNameInput = document.getElementById("eventNameInput").value
         const eventLocationInput = document.getElementById("eventLocationInput").value
@@ -29,7 +29,6 @@ onAuthStateChanged(auth, (user) => {
         const eventTimeInput = document.getElementById("eventTimeInput").value
         const eventDescriptionInput = document.getElementById("eventDescriptionInput").value
         const eventImageUrlInput = document.getElementById("eventImageUrlInput").value
-    
         if (
             !eventNameInput ||
             !eventLocationInput ||
@@ -41,7 +40,6 @@ onAuthStateChanged(auth, (user) => {
             alert("Please fill in all the fields.");
             return;
         }
-    
         set(push(ref(db, "newEvents/")), {
             name: eventNameInput,
             location: eventLocationInput,
@@ -49,7 +47,7 @@ onAuthStateChanged(auth, (user) => {
             time: eventTimeInput,
             description: eventDescriptionInput,
             imageUrl: eventImageUrlInput,
-            creator: userID
+            creator: userEmail
         })
             .then(() => {
                 alert("Event added succesfully");
@@ -59,6 +57,9 @@ onAuthStateChanged(auth, (user) => {
                 console.log(err);
             });
     });
+  } else {
+    alert('log in to create events')
+    window.location.href = "index.html"
   }
 });
 

@@ -51,52 +51,57 @@ export function displayEvents(collectionName, filterByName = "") {
             const time = document.createElement("p");
             time.className = "eventTime";
             time.innerText = eventData.time;
-            const likeButton = document.createElement("button");
-            likeButton.className = "likeButton";
-            const heartIcon = document.createElement("i");
-            heartIcon.className = "fa-solid fa-heart fa-2x";
-            likeButton.appendChild(heartIcon);
-            const likeCount = document.createElement("p");
-            likeCount.className = "likeCount";
-            likeCount.innerText = `Likes: ${eventData.likes || 0}`;
+
 
             onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    likeButton.addEventListener("click", async (e) => {
-                        e.preventDefault();          
-                        const eventRef = ref(db, `${collectionName}/${event}`);
-                        const eventDataSnapshot = await get(eventRef);
-                        if (eventDataSnapshot.exists()) {
-                            const eventData = eventDataSnapshot.val();
-                            const currentLikes = eventData.likes || 0;
+              if (user) {
+                  const likeButton = document.createElement("button");
+                  likeButton.className = "likeButton";
+                  const heartIcon = document.createElement("i");
+                  heartIcon.className = "fa-solid fa-heart fa-2x";
+                  likeButton.appendChild(heartIcon);
+                  const likeCount = document.createElement("p");
+                  likeCount.className = "likeCount";
+                  likeCount.innerText = `Likes: ${eventData.likes || 0}`;
+                  likeButton.addEventListener("click", async (e) => {
+                      e.preventDefault();    
+                      const eventRef = ref(db, `${collectionName}/${event}`);
+                      const eventLikedByRef = ref(db, `${collectionName}/${event}/likedBy`);
+                      const eventDataSnapshot = await get(eventRef);
+                      if (eventDataSnapshot.exists()) {
+                          const eventData = eventDataSnapshot.val();
+                          const currentLikes = eventData.likes || 0;
             
-                            if (heartIcon.classList.contains("liked")) {
-                                update(eventRef, {
-                                    likes: currentLikes - 1
-                                });
-                                const userLikesRef = ref(db, `users/${user.uid}/likedEvents`);
-                                update(userLikesRef, {
-                                    [event]: null
-                                });
-                            } else {
-                                update(eventRef, {
-                                    likes: currentLikes + 1
-                                });
-                                const userLikesRef = ref(db, `users/${user.uid}/likedEvents`);
-                                update(userLikesRef, {
-                                    [event]: true
-                                });
-                            }
-                            heartIcon.classList.toggle("liked");
-                            likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes -1 }`;
-                        }
-                    });
-                } else { 
-                    console.log("User not signed in");
-                }
+                          if (heartIcon.classList.contains("liked")) {
+                              update(eventRef, {
+                                  likes: currentLikes - 1
+                              });
+                              update(eventLikedByRef, {
+                                  [user.uid]: null
+                              })
+                              
+                          } else {
+                              update(eventRef, {
+                                  likes: currentLikes + 1
+                              });
+                              update(eventLikedByRef, {
+                                [user.uid]: true
+                            })
+                          }
+                          heartIcon.classList.toggle("liked");
+                          likeCount.innerText = `Likes: ${heartIcon.classList.contains("liked") ? currentLikes + 1 : currentLikes -1 }`;
+                      }
+                  });
+                  eventCard.append(likeButton, likeCount)
+              } else {
+                const likeButtons = document.querySelectorAll(".likeButton")
+                likeButtons.forEach((el) => el.remove())
+                const likeCounters = document.querySelectorAll(".likeCount")
+                likeCounters.forEach((el) => el.remove())
+              }
             });
             eventsContainer.append(eventCard);
-            eventCard.append(name, location, image, description, date, time, likeButton, likeCount);
+            eventCard.append(name, location, image, description, date, time);
           }
         }
         const main = document.getElementById("main");
@@ -111,3 +116,6 @@ export function displayEvents(collectionName, filterByName = "") {
       console.log(err);
     });
 }
+
+
+
