@@ -61,36 +61,35 @@ document.addEventListener("DOMContentLoaded", function () {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       signInBtn.textContent = "Sign Out";
-      const dropDownMenu = document.getElementById("dropDownMenu")
+      const dropDownMenu = document.getElementById("dropDownMenu");
       dropDownMenu.innerHTML = `<li><a href="./form.html">Create Event</a></li>
-      <li><a href="./adminDashboard.html">Admin Dashboard</a></li>`
-      const userHeaderLinks = document.getElementById("userHeaderLinks")
+      <li><a href="./adminDashboard.html">Admin Dashboard</a></li>`;
+      const userHeaderLinks = document.getElementById("userHeaderLinks");
       userHeaderLinks.innerHTML = `<li id="createEventLink"><a href="./form.html">Create Event</a></li>
-      <li id="adminDashboard"><a href="./adminDashboard.html">Admin Dashboard</a></li>`
-      const registerBtn = document.getElementById("registerBtn")
+      <li id="adminDashboard"><a href="./adminDashboard.html">Admin Dashboard</a></li>`;
+      const registerBtn = document.getElementById("registerBtn");
       if (registerBtn) {
-        registerBtn.remove()
+        registerBtn.remove();
       }
     } else {
       signInBtn.textContent = "Sign In";
-      const createEventLink = document.getElementById("createEventLink")
+      const createEventLink = document.getElementById("createEventLink");
       if (createEventLink) {
-        createEventLink.remove()
+        createEventLink.remove();
       }
-      const adminDashboard = document.getElementById("adminDashboard")
+      const adminDashboard = document.getElementById("adminDashboard");
       if (adminDashboard) {
-        adminDashboard.remove()
+        adminDashboard.remove();
       }
-      const logInForm = document.querySelector(".signIn-form")
-      const registerBtn = document.createElement("a")
-      registerBtn.className = "action_btn"
-      registerBtn.id = "registerBtn"
-      registerBtn.href = "./register.html"
-      registerBtn.innerText = "Register"
-      logInForm.appendChild(registerBtn)
-      const dropDownMenu = document.getElementById("dropDownMenu")
-      dropDownMenu.innerHTML = `<li><a href="./register.html" class="action_btn">Register</a></li>`
+      const logInForm = document.querySelector(".signIn-form");
+      const registerBtn = document.createElement("a");
+      registerBtn.className = "action_btn";
+      registerBtn.id = "registerBtn";
+      registerBtn.href = "./register.html";
+      registerBtn.innerText = "Register";
+      logInForm.appendChild(registerBtn);
+      const dropDownMenu = document.getElementById("dropDownMenu");
+      dropDownMenu.innerHTML = `<li><a href="./register.html" class="action_btn">Register</a></li>`;
     }
   });
 });
-
