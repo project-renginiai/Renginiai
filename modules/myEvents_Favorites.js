@@ -5,6 +5,7 @@ import {
   getAuth,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { displayEvents, displayUserEvents } from "./displayEvents.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
@@ -21,10 +22,15 @@ onAuthStateChanged(auth, (user) => {
     linksDiv.style.padding = "0";
     linksDiv.style.margin = "0";
     linksDiv.innerHTML = `
-    <li><a href="#">My Events</a></li>
-    <li style="margin-left: 15px; margin-right: 15px" ><a href="#">My Favorites</a></li>
+    <li><a id="myEventsLink" href="#">My Events</a></li>
+    <li style="margin-left: 15px; margin-right: 15px" ><a id="myFavoritesLink" href="#">My Favorites</a></li>
   `;
     navbar.appendChild(linksDiv);
+
+    const myEvents = document.getElementById("myEventsLink");
+    myEvents.addEventListener("click", () => {
+      displayUserEvents(user.uid);
+    });
   } else {
     const eventsFavoritesDiv = document.querySelector(".eventsFavoritesLinks");
     if (eventsFavoritesDiv) {
